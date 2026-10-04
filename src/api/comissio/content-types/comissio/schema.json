@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comissions",
+  "info": {
+    "singularName": "comissio",
+    "pluralName": "comissions",
+    "displayName": "Comissió",
+    "description": "Comissions de l'equip (Benvinguda, Troncs, Junta...)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "membres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::membre.membre",
+      "mappedBy": "comissions"
+    }
+  }
+}

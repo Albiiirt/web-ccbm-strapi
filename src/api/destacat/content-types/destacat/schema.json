@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "destacats",
+  "info": {
+    "singularName": "destacat",
+    "pluralName": "destacats",
+    "displayName": "Destacat",
+    "description": "Widget de destacats de la home (abans 'Widget' a Notion)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "date": {
+      "type": "date"
+    },
+    "icon": {
+      "type": "string",
+      "default": "event"
+    },
+    "externalId": {
+      "type": "string"
+    }
+  }
+}

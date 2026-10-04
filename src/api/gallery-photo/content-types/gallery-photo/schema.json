@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gallery_photos",
+  "info": {
+    "singularName": "gallery-photo",
+    "pluralName": "gallery-photos",
+    "displayName": "Foto de galeria",
+    "description": "Fotos de la galeria (abans fitxers locals + Notion)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "date": {
+      "type": "date"
+    },
+    "externalId": {
+      "type": "string",
+      "description": "ID original de Notion o 'local-<fitxer>' per a migració idempotent"
+    }
+  }
+}

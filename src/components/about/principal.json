@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_about_principals",
+  "info": {
+    "displayName": "Principal",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "titol": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

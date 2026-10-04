@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "diades",
+  "info": {
+    "singularName": "diada",
+    "pluralName": "diades",
+    "displayName": "Diada",
+    "description": "Agenda de diades castelleres"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titol": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date"
+    },
+    "lloc": {
+      "type": "string"
+    },
+    "hora": {
+      "type": "string"
+    },
+    "descripcio": {
+      "type": "text"
+    },
+    "diada_gran": {
+      "type": "boolean",
+      "default": false
+    },
+    "colla_amfitriona": {
+      "type": "string"
+    },
+    "colles_convidades": {
+      "type": "text",
+      "description": "Noms de colles separats per salt de línia"
+    },
+    "externalId": {
+      "type": "string"
+    }
+  }
+}

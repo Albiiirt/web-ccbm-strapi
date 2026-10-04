@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "singularName": "about",
+    "pluralName": "abouts",
+    "displayName": "About",
+    "description": "Secció 'Qui som' de la web: text principal, estadístiques i valors"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "principal": {
+      "type": "component",
+      "component": "about.principal",
+      "repeatable": false
+    },
+    "stats": {
+      "type": "component",
+      "component": "about.stat",
+      "repeatable": true
+    },
+    "valors": {
+      "type": "component",
+      "component": "about.valor",
+      "repeatable": true
+    }
+  }
+}

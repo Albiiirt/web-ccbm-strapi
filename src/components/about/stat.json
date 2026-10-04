@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_about_stats",
+  "info": {
+    "displayName": "Stat",
+    "icon": "chart-bar"
+  },
+  "options": {},
+  "attributes": {
+    "titol": {
+      "type": "string"
+    },
+    "numero": {
+      "type": "integer"
+    },
+    "prefix": {
+      "type": "string"
+    }
+  }
+}
