@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: web-ccbm-strapi
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.1
+      - key: NODE_ENV
+        value: production
+      # Secrets de Strapi — generats automàticament per Render en crear el servei
+      - key: APP_KEYS
+        generateValue: true
+      - key: API_TOKEN_SALT
+        generateValue: true
+      - key: ADMIN_JWT_SECRET
+        generateValue: true
+      - key: TRANSFER_TOKEN_SALT
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      # Base de dades — Postgres de Supabase. Omplir manualment al dashboard
+      # de Render després del primer deploy (Project Settings > Database de Supabase).
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: "true"
+      # Media — bucket de Supabase Storage (API S3-compatible). Omplir manualment.
+      - key: SUPABASE_S3_ENDPOINT
+        sync: false
+      - key: SUPABASE_S3_REGION
+        sync: false
+      - key: SUPABASE_S3_BUCKET
+        value: strapi-uploads
+      - key: SUPABASE_S3_ACCESS_KEY_ID
+        sync: false
+      - key: SUPABASE_S3_SECRET_ACCESS_KEY
+        sync: false
+      - key: SUPABASE_S3_PUBLIC_URL
+        sync: false
