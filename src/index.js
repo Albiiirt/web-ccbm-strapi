@@ -7,8 +7,8 @@
  * cada vegada que es recrea l'entorn.
  */
 const PUBLIC_READ_ACTIONS = [
-  'api::news-item.news-item.find',
-  'api::news-item.news-item.findOne',
+  'api::news.news.find',
+  'api::news.news.findOne',
   'api::gallery-photo.gallery-photo.find',
   'api::gallery-photo.gallery-photo.findOne',
   'api::destacat.destacat.find',
