@@ -1,0 +1,22 @@
+name: Mantenir Strapi despert (Render free tier)
+
+# Render (pla gratuït) adorm el servei després d'uns 15 min sense trànsit,
+# i la primera petició després de dormir triga 30-60s en respondre — la web
+# pública es veu lenta o buida durant aquest primer instant. Aquest workflow
+# fa un ping lleuger cada 12 min per evitar que s'adormi.
+on:
+  schedule:
+    - cron: '*/12 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Strapi
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" "https://web-ccbm-strapi.onrender.com/api/diades?pagination[pageSize]=1")
+          echo "Strapi respon amb HTTP $code"
+          if [ "$code" != "200" ]; then
+            echo "::warning::Strapi no ha respost amb 200 (HTTP $code)"
+          fi
