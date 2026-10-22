@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Ping Strapi
         run: |
-          code=$(curl -s -o /dev/null -w "%{http_code}" "https://web-ccbm-strapi.onrender.com/api/diades?pagination[pageSize]=1")
+          code=$(curl -sg -o /dev/null -w "%{http_code}" "https://web-ccbm-strapi.onrender.com/api/diades?pagination[pageSize]=1")
           echo "Strapi respon amb HTTP $code"
           if [ "$code" != "200" ]; then
             echo "::warning::Strapi no ha respost amb 200 (HTTP $code)"
