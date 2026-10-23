@@ -4,8 +4,27 @@ const config = {
   locales: [],
 };
 
+function showToast(message, isError) {
+  const el = document.createElement('div');
+  el.textContent = message;
+  Object.assign(el.style, {
+    position: 'fixed',
+    bottom: '24px',
+    right: '24px',
+    zIndex: 9999,
+    background: isError ? '#B72B1A' : '#328048',
+    color: '#fff',
+    padding: '12px 18px',
+    borderRadius: '8px',
+    fontSize: '14px',
+    boxShadow: '0 4px 16px rgba(0,0,0,.3)',
+    maxWidth: '360px',
+  });
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 6000);
+}
+
 const sendPressReleaseAction = ({ document, documentId, model }) => {
-  console.log('[nota-premsa-debug] ' + JSON.stringify({ model, documentId, document }));
   if (model !== 'api::news.news') return null;
   if (!document?.publishedAt) return null;
 
@@ -27,11 +46,11 @@ const sendPressReleaseAction = ({ document, documentId, model }) => {
       const { post } = getFetchClient();
       try {
         await post(`/api/news/${documentId}/send-press-release`);
-        window.alert('Nota de premsa enviada correctament.');
-        window.location.reload();
+        showToast('Nota de premsa enviada correctament.');
+        setTimeout(() => window.location.reload(), 1200);
       } catch (err) {
         const message = err?.response?.data?.error?.message || err.message || 'Error desconegut';
-        window.alert(`No s'ha pogut enviar la nota de premsa: ${message}`);
+        showToast(`No s'ha pogut enviar la nota de premsa: ${message}`, true);
       }
     },
   };
