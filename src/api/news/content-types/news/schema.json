@@ -36,6 +36,10 @@
     "externalId": {
       "type": "string",
       "description": "ID original de Notion o 'local-...' per a migració idempotent"
+    },
+    "pressReleaseSentAt": {
+      "type": "datetime",
+      "description": "Marca de quan es va enviar aquesta notícia com a nota de premsa per MailerLite (null si encara no s'ha enviat)"
     }
   }
 }
