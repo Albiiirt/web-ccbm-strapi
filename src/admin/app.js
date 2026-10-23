@@ -5,7 +5,7 @@ const config = {
 };
 
 const sendPressReleaseAction = ({ document, documentId, model }) => {
-  console.log('[nota-premsa-debug]', { model, documentId, document });
+  console.log('[nota-premsa-debug] ' + JSON.stringify({ model, documentId, document }));
   if (model !== 'api::news.news') return null;
   if (!document?.publishedAt) return null;
 
