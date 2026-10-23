@@ -13,7 +13,7 @@ const sendPressReleaseAction = ({ document, documentId, model }) => {
   return {
     name: 'send-press-release',
     label: alreadySent ? 'Reenviar nota de premsa' : 'Enviar com a nota de premsa',
-    position: 'header',
+    position: 'panel',
     variant: alreadySent ? 'secondary' : 'success',
     dialog: {
       type: 'dialog',
