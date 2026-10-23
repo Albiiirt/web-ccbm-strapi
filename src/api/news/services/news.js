@@ -55,6 +55,7 @@ module.exports = createCoreService('api::news.news', ({ strapi }) => ({
   async sendPressRelease(documentId) {
     const entry = await strapi.documents('api::news.news').findOne({
       documentId,
+      status: 'published',
       populate: ['image'],
     });
 
@@ -113,10 +114,14 @@ module.exports = createCoreService('api::news.news', ({ strapi }) => ({
 
     const sentAt = new Date().toISOString();
 
+    // update() només toca la versió draft; cal tornar a publicar perquè la
+    // marca de "ja enviat" també arribi a la versió published (que és la que
+    // llegim més amunt per decidir si cal avisar d'un reenviament).
     await strapi.documents('api::news.news').update({
       documentId,
       data: { pressReleaseSentAt: sentAt },
     });
+    await strapi.documents('api::news.news').publish({ documentId });
 
     return { sentAt, campaignId };
   },
