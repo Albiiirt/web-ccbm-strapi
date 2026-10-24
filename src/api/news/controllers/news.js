@@ -34,9 +34,10 @@ module.exports = createCoreController('api::news.news', ({ strapi }) => ({
     if (!(await assertIsAuthenticatedAdmin(ctx))) return;
 
     const { id } = ctx.params;
+    const test = ctx.request.query.test === '1' || ctx.request.query.test === 'true';
 
     try {
-      const result = await strapi.service('api::news.news').sendPressRelease(id);
+      const result = await strapi.service('api::news.news').sendPressRelease(id, { test });
       ctx.body = { data: result };
     } catch (err) {
       ctx.badRequest(err.message);

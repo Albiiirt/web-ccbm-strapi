@@ -56,9 +56,37 @@ const sendPressReleaseAction = ({ document, documentId, model }) => {
   };
 };
 
+const sendTestPressReleaseAction = ({ document, documentId, model }) => {
+  if (model !== 'api::news.news') return null;
+  if (!document?.publishedAt) return null;
+
+  return {
+    name: 'send-test-press-release',
+    label: 'Enviar prova (només jo)',
+    position: 'panel',
+    variant: 'secondary',
+    dialog: {
+      type: 'dialog',
+      title: 'Enviar una prova d\'aquesta nota de premsa?',
+      content: 'Enviarà un email només al grup "Proves" de MailerLite (la teva adreça). No afecta seguidors ni entitats, i no marca la notícia com a enviada de debò.',
+    },
+    onClick: async () => {
+      const { post } = getFetchClient();
+      try {
+        await post(`/api/news/${documentId}/send-press-release?test=1`);
+        showToast('Prova enviada correctament.');
+      } catch (err) {
+        const message = err?.response?.data?.error?.message || err.message || 'Error desconegut';
+        showToast(`No s'ha pogut enviar la prova: ${message}`, true);
+      }
+    },
+  };
+};
+
 const bootstrap = (app) => {
   app.getPlugin('content-manager').apis.addDocumentAction((actions) => [
     ...actions,
+    sendTestPressReleaseAction,
     sendPressReleaseAction,
   ]);
 };
