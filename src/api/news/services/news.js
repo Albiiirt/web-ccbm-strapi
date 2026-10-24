@@ -4,22 +4,64 @@ const { createCoreService } = require('@strapi/strapi').factories;
 
 const MAILERLITE_API_BASE = 'https://connect.mailerlite.com/api';
 
+// Colors/tipografia alineats amb app/globals.css de web-ccbm-next (--md-primary,
+// --md-on-surface, --font-display, etc.) perquè la nota de premsa es vegi com la
+// resta de la marca, no com un email genèric.
 function buildPressReleaseHtml(entry) {
   const siteUrl = process.env.PUBLIC_SITE_URL || 'https://ccbaixmontseny.cat';
   const link = entry.url || siteUrl;
-  const imageTag = entry.image?.url
-    ? `<p><img src="${entry.image.url}" alt="" style="max-width:100%;" /></p>`
+
+  const imageRow = entry.image?.url
+    ? `
+    <tr>
+      <td style="padding:0;">
+        <img src="${entry.image.url}" alt="" width="600" style="display:block;width:100%;max-width:600px;height:auto;" />
+      </td>
+    </tr>`
     : '';
 
   return `
-    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-      <h1 style="color:#B71C1C;">${entry.title}</h1>
-      ${imageTag}
-      <p>${entry.summary || ''}</p>
-      <p><a href="${link}" style="color:#1A237E;">Llegir la notícia completa</a></p>
-      <hr />
-      <p style="font-size:12px;color:#666;">Colla Castellera del Baix Montseny — ${siteUrl}</p>
-    </div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F0F6F7;padding:32px 16px;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#FFFFFF;border-radius:16px;overflow:hidden;">
+        <tr>
+          <td style="padding:28px 32px 0 32px;font-family:'Poppins',Helvetica,Arial,sans-serif;">
+            <span style="display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#01758C;">Nota de premsa</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:6px 32px 20px 32px;font-family:'Poppins',Helvetica,Arial,sans-serif;border-bottom:1px solid #E3ECEE;">
+            <span style="font-size:15px;font-weight:700;color:#1A1A1A;">Colla Castellera del Baix Montseny</span>
+          </td>
+        </tr>
+        ${imageRow}
+        <tr>
+          <td style="padding:28px 32px 0 32px;font-family:'Poppins',Helvetica,Arial,sans-serif;">
+            <h1 style="margin:0 0 14px 0;font-size:24px;line-height:1.3;color:#1A1A1A;">${entry.title}</h1>
+            <p style="margin:0 0 24px 0;font-size:15px;line-height:1.6;color:#4A5C60;">${entry.summary || ''}</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 32px 32px 32px;font-family:'Poppins',Helvetica,Arial,sans-serif;">
+            <table role="presentation" cellpadding="0" cellspacing="0">
+              <tr>
+                <td bgcolor="#01758C" style="border-radius:100px;">
+                  <a href="${link}" style="display:block;padding:12px 24px;font-size:14px;font-weight:700;color:#FFFFFF;text-decoration:none;">Llegir la notícia completa</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 32px 28px 32px;font-family:'Poppins',Helvetica,Arial,sans-serif;border-top:1px solid #E3ECEE;">
+            <p style="margin:0;font-size:12px;color:#4A5C60;">Colla Castellera del Baix Montseny — <a href="${siteUrl}" style="color:#01758C;text-decoration:none;">${siteUrl.replace(/^https?:\/\//, '')}</a></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
   `.trim();
 }
 
