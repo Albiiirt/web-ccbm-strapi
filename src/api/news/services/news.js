@@ -109,6 +109,8 @@ module.exports = createCoreService('api::news.news', ({ strapi }) => ({
       populate: ['image'],
     });
 
+    strapi.log.info('[nota-premsa-debug] image=' + JSON.stringify(entry?.image));
+
     if (!entry) {
       throw new Error('No s\'ha trobat la notícia.');
     }
