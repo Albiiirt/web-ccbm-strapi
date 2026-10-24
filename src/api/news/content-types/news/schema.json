@@ -40,6 +40,10 @@
     "pressReleaseSentAt": {
       "type": "datetime",
       "description": "Marca de quan es va enviar aquesta notícia com a nota de premsa per MailerLite (null si encara no s'ha enviat)"
+    },
+    "ctaLabel": {
+      "type": "string",
+      "description": "Text del botó de l'email de nota de premsa (només es mostra si hi ha url). Buit = \"Llegir la notícia completa\""
     }
   }
 }

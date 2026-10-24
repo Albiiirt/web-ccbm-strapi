@@ -23,6 +23,7 @@ function buildPressReleaseHtml(entry) {
     </tr>`
     : '';
 
+  const ctaLabel = entry.ctaLabel || 'Llegir la notícia completa';
   const ctaRow = link
     ? `
         <tr>
@@ -30,7 +31,7 @@ function buildPressReleaseHtml(entry) {
             <table role="presentation" cellpadding="0" cellspacing="0">
               <tr>
                 <td bgcolor="#01758C" style="border-radius:100px;">
-                  <a href="${link}" style="display:block;padding:12px 24px;font-size:14px;font-weight:700;color:#FFFFFF;text-decoration:none;">Llegir la notícia completa</a>
+                  <a href="${link}" style="display:block;padding:12px 24px;font-size:14px;font-weight:700;color:#FFFFFF;text-decoration:none;">${ctaLabel}</a>
                 </td>
               </tr>
             </table>
