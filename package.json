@@ -25,6 +25,7 @@
     "pg": "^8.23.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "patch-package": "^8.0.1",
     "react-router-dom": "^6.30.3",
     "styled-components": "^6.0.0"
   },
@@ -41,7 +42,5 @@
     "uuid": "713fdb93-8a6b-48b5-89cc-12f5eff8c119",
     "installId": "1bd616d3dcf94070564c1382c16b2705c9873cc1be1f78889203f78ab8e55603"
   },
-  "devDependencies": {
-    "patch-package": "^8.0.1"
-  }
+  "devDependencies": {}
 }
